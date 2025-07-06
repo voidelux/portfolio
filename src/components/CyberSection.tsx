@@ -8,8 +8,6 @@ import {
   Cpu,
   Server,
   Code,
-  Database,
-  Globe,
   Monitor,
   Wifi,
   Bug,
@@ -103,19 +101,12 @@ export default function CyberSection() {
   const tools = [
     { name: "Nmap", category: "Network Scanner", icon: Monitor },
     { name: "Wireshark", category: "Packet Analyzer", icon: Eye },
-    { name: "Burp Suite", category: "Web Security", icon: Globe },
     { name: "Metasploit", category: "Exploitation", icon: Zap },
     { name: "Gobuster", category: "Directory Brute", icon: Server },
-    { name: "SQLMap", category: "SQL Injection", icon: Database },
     { name: "John the Ripper", category: "Password Cracking", icon: Key },
     { name: "Hashcat", category: "Hash Cracking", icon: Lock },
   ];
 
-  const achievements = [
-    { platform: "TryHackMe", rank: "Top 5%", rooms: "150+" },
-    { platform: "HackTheBox", rank: "Hacker", machines: "75+" },
-    { platform: "OverTheWire", progress: "Bandit Complete", level: "Advanced" },
-  ];
 
   const tabs = [
     { id: "overview", label: "Overview", icon: Shield },
@@ -136,27 +127,27 @@ export default function CyberSection() {
         <div className="scanning-lines opacity-20"></div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 py-20">
+      <div className="relative z-10 container mx-auto px-4 md:px-6 py-12 md:py-20">
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-3 mb-6">
             <div className="p-4 bg-green-900/30 rounded-lg border border-green-400/50 shadow-lg shadow-green-400/20">
               <Shield className="w-10 h-10 text-green-400" />
             </div>
-            <h1 className="text-5xl font-bold text-green-400 font-mono tracking-wider">
-              CYBER
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-green-400 font-mono tracking-wider">
+              cybersec.sh
             </h1>
           </div>
 
-          <div className="bg-black/90 border border-green-400/50 rounded-lg p-8 max-w-3xl mx-auto shadow-2xl shadow-green-400/10">
+          <div className="bg-black/90 border border-green-400/50 rounded-lg p-4 md:p-6 lg:p-8 max-w-3xl mx-auto shadow-2xl shadow-green-400/10">
             <div className="flex items-center gap-3 mb-6">
               <Terminal className="w-6 h-6 text-green-400" />
-              <span className="text-green-400 font-mono text-lg">
-                root@max-security:~#
+              <span className="text-green-400 font-mono text-sm md:text-lg">
+                max@kali:~#
               </span>
               <div className="w-3 h-6 bg-green-400 animate-pulse ml-2"></div>
             </div>
-            <pre className="text-green-400 font-mono text-left whitespace-pre-wrap text-lg leading-relaxed">
+            <pre className="text-green-400 font-mono text-left whitespace-pre-wrap text-sm md:text-lg leading-relaxed">
               {terminalText}
             </pre>
           </div>
@@ -165,14 +156,14 @@ export default function CyberSection() {
         {showContent && (
           <div className="animate-fadeIn space-y-16">
             {/* Navigation Tabs */}
-            <div className="flex justify-center mb-12">
+            <div className="flex justify-center mb-8 md:mb-12 overflow-x-auto pb-2">
               <div className="bg-gray-900/50 border border-green-400/30 rounded-lg p-2 backdrop-blur-sm">
-                <div className="flex gap-2">
+                <div className="flex gap-1 md:gap-2">
                   {tabs.map((tab) => (
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`flex items-center gap-2 px-6 py-3 rounded-md font-mono transition-all duration-300 ${
+                      className={`flex items-center gap-1 md:gap-2 px-3 md:px-6 py-2 md:py-3 rounded-md font-mono transition-all duration-300 text-xs md:text-sm ${
                         activeTab === tab.id
                           ? "bg-green-400/20 text-green-300 border border-green-400/50"
                           : "text-green-400/70 hover:text-green-300 hover:bg-green-400/10"
@@ -189,47 +180,39 @@ export default function CyberSection() {
             {/* Tab Content */}
             <div className="max-w-6xl mx-auto">
               {activeTab === "overview" && (
-                <div className="grid lg:grid-cols-2 gap-12">
-                  <div className="bg-gray-900/50 border border-green-400/30 rounded-lg p-8 backdrop-blur-sm">
-                    <h3 className="text-2xl font-bold text-green-400 mb-6 flex items-center gap-3">
+                <div className="grid lg:grid-cols-2 gap-6 md:gap-12">
+                  <div className="bg-gray-900/50 border border-green-400/30 rounded-lg p-4 md:p-8 backdrop-blur-sm">
+                    <h3 className="text-xl md:text-2xl font-bold text-green-400 mb-4 md:mb-6 flex items-center gap-2 md:gap-3">
                       <Shield className="w-7 h-7" />
                       Security Expertise
                     </h3>
-                    <div className="space-y-6 text-green-200">
-                      <p className="text-lg leading-relaxed">
+                    <div className="space-y-4 md:space-y-6 text-green-200">
+                      <p className="text-sm md:text-lg leading-relaxed">
                         Deep expertise in web application security, penetration
                         testing, and Linux system administration. Specialized in
                         identifying vulnerabilities and implementing robust
                         security measures.
                       </p>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-black/50 border border-green-400/20 rounded-lg p-4">
-                          <div className="text-green-400 font-mono text-2xl font-bold">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="bg-black/50 border border-green-400/20 rounded-lg p-4 mx-auto w-full md:w-64">
+                          <div className="text-green-400 font-mono text-xl md:text-2xl font-bold">
                             500+
                           </div>
                           <div className="text-green-300 text-sm">
                             Hours Practiced
                           </div>
                         </div>
-                        <div className="bg-black/50 border border-green-400/20 rounded-lg p-4">
-                          <div className="text-green-400 font-mono text-2xl font-bold">
-                            225+
-                          </div>
-                          <div className="text-green-300 text-sm">
-                            Challenges Solved
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-gray-900/50 border border-green-400/30 rounded-lg p-8 backdrop-blur-sm">
-                    <h3 className="text-2xl font-bold text-green-400 mb-6 flex items-center gap-3">
+                  <div className="bg-gray-900/50 border border-green-400/30 rounded-lg p-4 md:p-8 backdrop-blur-sm">
+                    <h3 className="text-xl md:text-2xl font-bold text-green-400 mb-4 md:mb-6 flex items-center gap-2 md:gap-3">
                       <Terminal className="w-7 h-7" />
                       Linux Mastery
                     </h3>
-                    <div className="space-y-4 text-green-200">
-                      <p className="text-lg leading-relaxed">
+                    <div className="space-y-3 md:space-y-4 text-green-200">
+                      <p className="text-sm md:text-lg leading-relaxed">
                         Extensive experience with Linux distributions, system
                         administration, and command-line proficiency.
                       </p>
@@ -257,18 +240,18 @@ export default function CyberSection() {
               )}
 
               {activeTab === "skills" && (
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                   {cyberSkills.map((skill, index) => (
                     <div
                       key={index}
-                      className="bg-gray-900/50 border border-green-400/30 rounded-lg p-6 backdrop-blur-sm"
+                      className="bg-gray-900/50 border border-green-400/30 rounded-lg p-4 md:p-6 backdrop-blur-sm"
                     >
                       <div className="flex items-center gap-4 mb-4">
                         <div className="p-3 bg-green-900/50 rounded-lg border border-green-400/30">
                           <skill.icon className="w-6 h-6 text-green-400" />
                         </div>
                         <div>
-                          <h4 className="text-xl font-bold text-green-300">
+                          <h4 className="text-lg md:text-xl font-bold text-green-300">
                             {skill.name}
                           </h4>
                           <p className="text-green-400/70 text-sm">
@@ -298,11 +281,11 @@ export default function CyberSection() {
               )}
 
               {activeTab === "tools" && (
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 justify-items-center">
                   {tools.map((tool, index) => (
                     <div
                       key={index}
-                      className="bg-gray-900/50 border border-green-400/30 rounded-lg p-6 backdrop-blur-sm hover:border-green-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-green-400/20"
+                      className="bg-gray-900/50 border border-green-400/30 rounded-lg p-4 md:p-6 w-full max-w-[15rem] md:max-w-[18rem] backdrop-blur-sm hover:border-green-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-green-400/20"
                     >
                       <div className="flex flex-col items-center text-center space-y-3">
                         <div className="p-3 bg-green-900/50 rounded-lg border border-green-400/30">
@@ -323,65 +306,14 @@ export default function CyberSection() {
               )}
 
               {activeTab === "achievements" && (
-                <div className="space-y-8">
-                  <div className="text-center mb-12">
-                    <h3 className="text-3xl font-bold text-green-400 mb-4">
-                      Platform Achievements
-                    </h3>
-                    <p className="text-green-300 text-lg">
-                      Proven track record on leading cybersecurity platforms
-                    </p>
-                  </div>
-
-                  <div className="grid md:grid-cols-3 gap-8">
-                    {achievements.map((achievement, index) => (
-                      <div
-                        key={index}
-                        className="bg-gray-900/50 border border-green-400/30 rounded-lg p-8 text-center backdrop-blur-sm"
-                      >
-                        <div className="mb-6">
-                          <div className="w-16 h-16 bg-green-900/50 rounded-full border border-green-400/50 flex items-center justify-center mx-auto mb-4">
-                            <Shield className="w-8 h-8 text-green-400" />
-                          </div>
-                          <h4 className="text-2xl font-bold text-green-300 font-mono">
-                            {achievement.platform}
-                          </h4>
-                        </div>
-                        <div className="space-y-3">
-                          <div className="bg-black/50 border border-green-400/20 rounded-lg p-3">
-                            <div className="text-green-400 font-mono text-lg font-bold">
-                              {achievement.rank}
-                            </div>
-                            <div className="text-green-300 text-sm">
-                              Current Rank
-                            </div>
-                          </div>
-                          <div className="bg-black/50 border border-green-400/20 rounded-lg p-3">
-                            <div className="text-green-400 font-mono text-lg font-bold">
-                              {achievement.rooms ||
-                                achievement.machines ||
-                                achievement.progress}
-                            </div>
-                            <div className="text-green-300 text-sm">
-                              {achievement.rooms
-                                ? "Rooms Completed"
-                                : achievement.machines
-                                  ? "Machines Pwned"
-                                  : "Progress"}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="bg-gray-900/50 border border-green-400/30 rounded-lg p-8 backdrop-blur-sm">
-                    <h4 className="text-xl font-bold text-green-400 mb-4 text-center">
+                <div className="space-y-6 md:space-y-8">
+                  <div className="bg-gray-900/50 border border-green-400/30 rounded-lg p-4 md:p-8 backdrop-blur-sm">
+                    <h4 className="text-lg md:text-xl font-bold text-green-400 mb-3 md:mb-4 text-center">
                       Specialization Areas
                     </h4>
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-3">
-                        <h5 className="text-lg font-semibold text-green-300">
+                        <h5 className="text-base md:text-lg font-semibold text-green-300">
                           Web Application Security
                         </h5>
                         <ul className="space-y-2 text-green-200">
@@ -395,17 +327,13 @@ export default function CyberSection() {
                           </li>
                           <li className="flex items-center gap-2">
                             <span className="text-green-400">→</span>
-                            CSRF Protection Implementation
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <span className="text-green-400">→</span>
                             Authentication & Authorization Bypass
                           </li>
                         </ul>
                       </div>
 
                       <div className="space-y-3">
-                        <h5 className="text-lg font-semibold text-green-300">
+                        <h5 className="text-base md:text-lg font-semibold text-green-300">
                           System Security
                         </h5>
                         <ul className="space-y-2 text-green-200">
@@ -417,10 +345,7 @@ export default function CyberSection() {
                             <span className="text-green-400">→</span>
                             Network Reconnaissance & Enumeration
                           </li>
-                          <li className="flex items-center gap-2">
-                            <span className="text-green-400">→</span>
-                            Binary Exploitation & Reverse Engineering
-                          </li>
+
                           <li className="flex items-center gap-2">
                             <span className="text-green-400">→</span>
                             Cryptography & Hash Cracking
@@ -434,13 +359,7 @@ export default function CyberSection() {
             </div>
 
             {/* Footer */}
-            <div className="text-center pt-16 border-t border-green-400/20">
-              <div className="inline-block bg-green-400/10 border border-green-400/30 rounded-lg px-8 py-4">
-                <p className="text-green-400 font-mono text-lg">
-                  [SECURITY MODE ACTIVE - SCROLL UP TO RETURN]
-                </p>
-              </div>
-            </div>
+            <div className="text-center pt-16 border-t border-green-400/20"></div>
           </div>
         )}
       </div>

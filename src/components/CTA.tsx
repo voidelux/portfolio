@@ -42,7 +42,7 @@ export default function CTA() {
 
           <div className="text-center pt-8 border-t border-white/20">
             <p className="text-white/70">
-              © 2024 Max. Built with React & TypeScript.
+              © 2025 Maxim's portfolio. Built with React & TypeScript.
             </p>
           </div>
         </div>
