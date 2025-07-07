@@ -7,7 +7,7 @@ Welcome to my personal portfolio! I’m **Maxim**, a 15-year-old developer from 
 
 ---
 
-![Journey](https://github.com/voidelux/portfolio/blob/main/screens/screen3.png)
+![Journey](https://github.com/voidelux/portfolio/blob/main/screens/image.png)
 
 ## 👋 About Me
 
