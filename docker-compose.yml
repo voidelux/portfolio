@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  portfolio:
+    build: .
+    container_name: portfolio
+    networks:
+      - appnet
+    ports:
+      - "5173:5173"
+    command: npm run dev
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    command: tunnel --no-autoupdate run --token eyJhIjoiMDc0YjQ3NTg2MDgzYzFhY2MzODQwMTE3ODZkOTg2YWEiLCJ0IjoiNThjNDU2YzAtOWEwZS00YjkwLTg2ZmQtYTYxODA4YmNlY2NhIiwicyI6Ik1XVTBNbU16WWpBdE1XUmpNUzAwTWpWaUxXSTNNbVV0T1RjNU1UWXdPR0V5TVRWaSJ9
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    driver: bridge

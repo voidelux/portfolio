@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import {
   Terminal,
   Shield,
@@ -19,6 +19,11 @@ export default function CyberSection() {
   const [showContent, setShowContent] = useState(false);
   const [activeTab, setActiveTab] = useState("overview");
   const [hasAnimationPlayed, setHasAnimationPlayed] = useState(false);
+  const [elementVisibility, setElementVisibility] = useState({
+    terminal: false,
+    tabs: false,
+    content: false,
+  });
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const terminalCommands = [
@@ -27,12 +32,28 @@ export default function CyberSection() {
     "> Access granted. Welcome boss.",
   ];
 
+  // Callback for when element becomes visible
+  const onElementVisible = useCallback(
+    (element: keyof typeof elementVisibility) => {
+      setElementVisibility((prev) => ({
+        ...prev,
+        [element]: true,
+      }));
+    },
+    [],
+  );
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimationPlayed) {
           startTerminalAnimation();
           setHasAnimationPlayed(true);
+
+          // Set a timer to show elements sequentially
+          setTimeout(() => onElementVisible("terminal"), 500);
+          setTimeout(() => onElementVisible("tabs"), 2000);
+          setTimeout(() => onElementVisible("content"), 2500);
         }
       },
       { threshold: 0.05 },
@@ -43,7 +64,8 @@ export default function CyberSection() {
     }
 
     return () => observer.disconnect();
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasAnimationPlayed, onElementVisible]);
 
   const startTerminalAnimation = () => {
     setTerminalText("");
@@ -74,13 +96,13 @@ export default function CyberSection() {
   const cyberSkills = [
     {
       name: "Web Security",
-      level: 95,
+      level: 65,
       icon: Shield,
       description: "XSS, SQLi, CSRF protection",
     },
     {
       name: "Penetration Testing",
-      level: 85,
+      level: 70,
       icon: Bug,
       description: "Ethical hacking methodologies",
     },
@@ -92,7 +114,7 @@ export default function CyberSection() {
     },
     {
       name: "Network Analysis",
-      level: 80,
+      level: 50,
       icon: Wifi,
       description: "Traffic monitoring & analysis",
     },
@@ -107,12 +129,11 @@ export default function CyberSection() {
     { name: "Hashcat", category: "Hash Cracking", icon: Lock },
   ];
 
-
   const tabs = [
     { id: "overview", label: "Overview", icon: Shield },
     { id: "skills", label: "Skills", icon: Cpu },
     { id: "tools", label: "Arsenal", icon: Code },
-    { id: "achievements", label: "Achievements", icon: Zap },
+    { id: "achievements", label: "Specialization", icon: Zap },
   ];
 
   return (
@@ -129,10 +150,10 @@ export default function CyberSection() {
 
       <div className="relative z-10 container mx-auto px-4 md:px-6 py-12 md:py-20">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 mb-6">
-            <div className="p-4 bg-green-900/30 rounded-lg border border-green-400/50 shadow-lg shadow-green-400/20">
-              <Shield className="w-10 h-10 text-green-400" />
+        <div className="text-center mb-16 cyber-construct">
+          <div className="inline-flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+            <div className="p-3 md:p-4 bg-green-900/30 rounded-lg border border-green-400/50 shadow-lg shadow-green-400/20">
+              <Shield className="w-8 h-8 md:w-10 md:h-10 text-green-400" />
             </div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-green-400 font-mono tracking-wider">
               cybersec.sh
@@ -154,9 +175,11 @@ export default function CyberSection() {
         </div>
 
         {showContent && (
-          <div className="animate-fadeIn space-y-16">
+          <div className="space-y-16">
             {/* Navigation Tabs */}
-            <div className="flex justify-center mb-8 md:mb-12 overflow-x-auto pb-2">
+            <div
+              className={`flex justify-center mb-8 md:mb-12 overflow-x-auto pb-2 transition-all duration-700 transform ${elementVisibility.tabs ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"}`}
+            >
               <div className="bg-gray-900/50 border border-green-400/30 rounded-lg p-2 backdrop-blur-sm">
                 <div className="flex gap-1 md:gap-2">
                   {tabs.map((tab) => (
@@ -178,10 +201,12 @@ export default function CyberSection() {
             </div>
 
             {/* Tab Content */}
-            <div className="max-w-6xl mx-auto">
+            <div
+              className={`max-w-6xl mx-auto transition-all duration-1000 ${elementVisibility.content ? "opacity-100" : "opacity-0"}`}
+            >
               {activeTab === "overview" && (
                 <div className="grid lg:grid-cols-2 gap-6 md:gap-12">
-                  <div className="bg-gray-900/50 border border-green-400/30 rounded-lg p-4 md:p-8 backdrop-blur-sm">
+                  <div className="cyber-element-left bg-gray-900/50 border border-green-400/30 rounded-lg p-4 md:p-8 backdrop-blur-sm">
                     <h3 className="text-xl md:text-2xl font-bold text-green-400 mb-4 md:mb-6 flex items-center gap-2 md:gap-3">
                       <Shield className="w-7 h-7" />
                       Security Expertise
@@ -206,7 +231,7 @@ export default function CyberSection() {
                     </div>
                   </div>
 
-                  <div className="bg-gray-900/50 border border-green-400/30 rounded-lg p-4 md:p-8 backdrop-blur-sm">
+                  <div className="cyber-element-right bg-gray-900/50 border border-green-400/30 rounded-lg p-4 md:p-8 backdrop-blur-sm">
                     <h3 className="text-xl md:text-2xl font-bold text-green-400 mb-4 md:mb-6 flex items-center gap-2 md:gap-3">
                       <Terminal className="w-7 h-7" />
                       Linux Mastery
@@ -244,7 +269,8 @@ export default function CyberSection() {
                   {cyberSkills.map((skill, index) => (
                     <div
                       key={index}
-                      className="bg-gray-900/50 border border-green-400/30 rounded-lg p-4 md:p-6 backdrop-blur-sm"
+                      className={`bg-gray-900/50 border border-green-400/30 rounded-lg p-4 md:p-6 backdrop-blur-sm ${index % 2 === 0 ? "cyber-element-left" : "cyber-element-right"}`}
+                      style={{ animationDelay: `${0.2 * index}s` }}
                     >
                       <div className="flex items-center gap-4 mb-4">
                         <div className="p-3 bg-green-900/50 rounded-lg border border-green-400/30">
@@ -286,6 +312,10 @@ export default function CyberSection() {
                     <div
                       key={index}
                       className="bg-gray-900/50 border border-green-400/30 rounded-lg p-4 md:p-6 w-full max-w-[15rem] md:max-w-[18rem] backdrop-blur-sm hover:border-green-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-green-400/20"
+                      style={{
+                        opacity: 0,
+                        animation: `fadeUp 0.6s forwards ${0.15 * index}s`,
+                      }}
                     >
                       <div className="flex flex-col items-center text-center space-y-3">
                         <div className="p-3 bg-green-900/50 rounded-lg border border-green-400/30">
@@ -307,7 +337,7 @@ export default function CyberSection() {
 
               {activeTab === "achievements" && (
                 <div className="space-y-6 md:space-y-8">
-                  <div className="bg-gray-900/50 border border-green-400/30 rounded-lg p-4 md:p-8 backdrop-blur-sm">
+                  <div className="cyber-construct bg-gray-900/50 border border-green-400/30 rounded-lg p-4 md:p-8 backdrop-blur-sm">
                     <h4 className="text-lg md:text-xl font-bold text-green-400 mb-3 md:mb-4 text-center">
                       Specialization Areas
                     </h4>
@@ -359,14 +389,14 @@ export default function CyberSection() {
             </div>
 
             {/* Footer */}
-            <div className="text-center pt-16 border-t border-green-400/20"></div>
+            <div className="text-center pt-10 md:pt-16 border-t border-green-400/20"></div>
           </div>
         )}
       </div>
 
       <style>
         {`
-        @keyframes fadeIn {
+        @keyframes slideUp {
           from {
             opacity: 0;
             transform: translateY(30px);
@@ -378,7 +408,7 @@ export default function CyberSection() {
         }
 
         .animate-fadeIn {
-          animation: fadeIn 1s ease-out;
+          animation: slideUp 1s ease-out;
         }
 
         .matrix-rain {

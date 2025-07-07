@@ -6,18 +6,48 @@ export default function Skills() {
       category: "Backend Development",
       icon: Server,
       items: [
-        { name: "Python", level: "Advanced", color: "bg-green-500" },
-        { name: "Go", level: "Simillar with", color: "bg-blue-500" },
-        { name: "JavaScript", level: "Simillar with", color: "bg-yellow-500" },
+        {
+          name: "Python",
+          level: "Advanced",
+          color: "bg-green-500",
+          percentage: 75,
+        },
+        {
+          name: "Go",
+          level: "Familiar with",
+          color: "bg-blue-500",
+          percentage: 30,
+        },
+        {
+          name: "JavaScript",
+          level: "Good with",
+          color: "bg-yellow-500",
+          percentage: 60,
+        },
       ],
     },
     {
       category: "Frontend Development",
       icon: Globe,
       items: [
-        { name: "React", level: "Advanced", color: "bg-blue-500" },
-        { name: "TypeScript", level: "Intermediate", color: "bg-blue-600" },
-        { name: "HTML/CSS/JS", level: "Advanced", color: "bg-orange-500" },
+        {
+          name: "React",
+          level: "Advanced",
+          color: "bg-blue-500",
+          percentage: 65,
+        },
+        {
+          name: "TypeScript",
+          level: "Intermediate",
+          color: "bg-blue-600",
+          percentage: 70,
+        },
+        {
+          name: "HTML/CSS",
+          level: "Advanced",
+          color: "bg-orange-500",
+          percentage: 70,
+        },
       ],
     },
   ];
@@ -64,7 +94,9 @@ export default function Skills() {
                       <div
                         className={`h-2 rounded-full ${skill.color} transition-all duration-1000`}
                         style={{
-                          width: skill.level === "Advanced" ? "85%" : "70%",
+                          width: skill.percentage
+                            ? `${skill.percentage}%`
+                            : "60%",
                         }}
                       />
                     </div>

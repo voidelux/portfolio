@@ -13,8 +13,8 @@ export default function Projects() {
     {
       title: "KahootBOTS",
       description:
-        "Python-based CLI tool for flooding Kahoot games with automated bots using proxy rotation. Bypasses IP restrictions, supports up to 60 bots per session, and includes batch control, input automation, and simple configuration.",
-      technologies: ["Python", "aiohttp", "kahoot-py", "asyncio"],
+        "Python-based CLI tool for flooding Kahoot games with automated bots using proxy rotation. Bypasses IP restrictions, supports up to 60 bots per session, and includes batch control, input automation, and simple configuration.\n\n⚠️ This project is strictly for educational and testing purposes. Misuse is not encouraged or supported.",
+        technologies: ["Python", "aiohttp", "kahoot-py", "asyncio"],
       features: [
         "Automated bot spamming for Kahoot sessions",
         "Up to 60 bots using proxy servers",
@@ -117,9 +117,15 @@ export default function Projects() {
                     </h3>
                   </div>
 
-                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                    {project.description}
-                  </p>
+                  {project.description.split('\n\n').map((part, i) => (
+                    <p
+                      key={i}
+                      className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4"
+                    >
+                      {part}
+                    </p>
+                  ))}
+
 
                   {/* Technologies */}
                   <div className="space-y-3">
@@ -141,16 +147,16 @@ export default function Projects() {
 
                   {/* Action Buttons */}
                   <div className="flex gap-4 pt-4">
-                    <button
+                    <a
+                      href="https://github.com/voidelux"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className={`inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r ${project.color} text-white rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300`}
                     >
                       <Github className="w-5 h-5" />
-                      View Code
-                    </button>
-                    <button className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                      <ExternalLink className="w-5 h-5" />
-                      Live Demo
-                    </button>
+                      GitHub
+                    </a>
+
                   </div>
                 </div>
 
