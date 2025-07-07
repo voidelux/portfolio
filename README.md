@@ -1,6 +1,5 @@
 ---
 
-![Fotos](https://github.com/voidelux/portfolio/blob/main/CleanShot%202025-07-07%20at%2022.23.48%402x.png)
 
 # 👨‍💻 Maxim’s Portfolio 🚀
 
@@ -23,16 +22,16 @@ Welcome to my personal portfolio! I’m **Maxim**, a 15-year-old developer from 
 ## 🛠 Skills & Technologies
 
 **Backend:**
-🐍 Python (Advanced)
-🐹 Go (Familiar)
-📜 JavaScript (Good)
+- 🐍 Python (Advanced)
+- 🐹 Go (Familiar)
+- 📜 JavaScript (Good)
 
 **Frontend:**
-⚛️ React (Advanced)
-📘 TypeScript (Intermediate)
-🌐 HTML/CSS (Advanced)
+- ⚛️ React (Advanced)
+- 📘 TypeScript (Intermediate)
+- 🌐 HTML/CSS (Advanced)
 
----
+![Cybersec](https://github.com/voidelux/portfolio/blob/main/screens/screen4.png)
 
 ## 📂 Featured Projects
 
