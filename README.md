@@ -1,5 +1,7 @@
 ---
 
+![Showcase](https://github.com/voidelux/portfolio/blob/main/CleanShot%202025-07-07%20at%2022.23.48%402x.png)
+
 # 👨‍💻 Maxim’s Portfolio 🚀
 
 Welcome to my personal portfolio! I’m **Maxim**, a 15-year-old developer from Germany 🇩🇪 passionate about building modern web experiences using **Python** backends and cutting-edge frontend technologies ⚡️.
